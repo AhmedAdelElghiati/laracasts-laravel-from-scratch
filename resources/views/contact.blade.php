@@ -1,16 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome</title>
-</head>
-<body>
-<h1>Hello From Contact Page</h1>
-
-<div>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-</div>
-</body>
-</html>
+<x-layout title="Contact">
+    <h1>Hello From Contact Page</h1>
+    <x-card class="max-w-400">
+        <p>Placeholder For Contact Form</p>
+    </x-card>
+</x-layout>
