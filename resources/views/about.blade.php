@@ -6,11 +6,11 @@
     <title>Welcome</title>
 </head>
 <body>
-    <h1>Hello World, Again</h1>
+<h1>Hello From About Page</h1>
 
-    <div>
-        <a href="/about">About</a>
-        <a href="/contact">Contact</a>
-    </div>
+<div>
+    <a href="/">Home</a>
+    <a href="/contact">Contact</a>
+</div>
 </body>
 </html>
