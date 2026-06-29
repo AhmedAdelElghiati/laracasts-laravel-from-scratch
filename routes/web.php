@@ -24,3 +24,19 @@ Route::view('/directives', 'directives' , ['tasks' =>[
     'Go to the gym',
     'Do homework'
 ]]);
+
+
+Route::get('/ideas', function () {
+    $ideas = session()->get('ideas', []);
+    return view('ideas', [
+        'ideas' => $ideas
+    ]);
+});
+
+Route::post('/ideas', function () {
+    $idea = request('idea');
+
+    session()->push('ideas', $idea);
+
+    return redirect('/ideas');
+});
