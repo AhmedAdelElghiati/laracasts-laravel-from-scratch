@@ -35,8 +35,14 @@ Route::get('/ideas', function () {
         })
         ->get();
 
-    return view('ideas', [
+    return view('ideas.index', [
         'ideas' => $ideas
+    ]);
+});
+
+Route::get('/ideas/{idea}', function (Idea $idea) {
+    return view('ideas.show', [
+        'idea' => $idea
     ]);
 });
 
@@ -51,4 +57,25 @@ Route::post('/ideas', function () {
     );
 
     return redirect('/ideas');
+});
+
+Route::get('/ideas/{idea}/edit', function (Idea $idea) {
+    return view('ideas.edit', [
+        'idea' => $idea
+    ]);
+});
+
+Route::patch('/ideas/{idea}/update', function (Idea $idea) {
+    $idea->update(
+        [
+            'description' => request('description')
+        ]
+    );
+    return redirect("/ideas/{$idea->id}/edit");
+});
+
+
+Route::delete('/ideas/{idea}', function (Idea $idea) {
+    $idea->delete();
+    return redirect("/ideas");
 });
