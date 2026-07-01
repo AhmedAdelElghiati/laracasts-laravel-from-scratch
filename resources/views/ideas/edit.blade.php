@@ -7,7 +7,7 @@
     <title>Ideas</title>
 </head>
 <body class="bg-gray-900 p-6 max-w-xl mx-auto">
-<form action="./update"  method="POST">
+<form action="./"  method="POST">
     @csrf
     @method('PATCH')
     <div class="col-span-full">
