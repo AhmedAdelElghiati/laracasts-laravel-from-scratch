@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Idea;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -27,7 +28,13 @@ Route::view('/directives', 'directives' , ['tasks' =>[
 
 
 Route::get('/ideas', function () {
-    $ideas = session()->get('ideas', []);
+//    $ideas = session()->get('ideas', []);
+    $ideas = Idea::query()
+        ->when(request('state'),function ($query, $state) {
+            $query->where('state', $state);
+        })
+        ->get();
+
     return view('ideas', [
         'ideas' => $ideas
     ]);
@@ -36,7 +43,12 @@ Route::get('/ideas', function () {
 Route::post('/ideas', function () {
     $idea = request('idea');
 
-    session()->push('ideas', $idea);
+    Idea::create(
+        [
+            'description' => $idea,
+            'state' => 'pending'
+        ]
+    );
 
     return redirect('/ideas');
 });
