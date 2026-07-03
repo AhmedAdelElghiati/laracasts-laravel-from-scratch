@@ -15,9 +15,9 @@ class IdeaController extends Controller
     {
         $ideas = Idea::query()
             ->when(request('state'),function ($query, $state) {
-                $query->where('state', $state);
+                $query->where('state', $state) ;
             })
-            ->get();
+            ->where('user_id', auth()->id())->get();
 
         return view('ideas.index', [
             'ideas' => $ideas
@@ -46,6 +46,7 @@ class IdeaController extends Controller
 
         Idea::create(
             [
+                'user_id' => auth()->id(),
                 'description' => $description,
                 'state' => 'pending'
             ]
